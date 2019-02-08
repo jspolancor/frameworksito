@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Un frameworksito</title>
+    <style>
+        body{
+            background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+            height: 100vh;
+            width: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Reactivity</h1>
+    <br>
+    <img src="https://media.giphy.com/media/FBzqZGthkW6KQ/giphy.gif" alt="">
+
+    <div id="InputComponent">
+        <h1 ref="text"></h1>
+        <input type="text" placeholder="Algun texto">
+    </div>
+
+    <div id="ButtonComponent">
+        <h1 ref="counter"></h1>
+        <button>+1</button>
+    </div>
+
+<script src="frameworksito.js"></script>
+<script>
+    const InputComponent = new frameworksito({text: ''}, document.querySelector('#InputComponent'));
+    const ButtonComponent = new frameworksito({counter: 0}, document.querySelector('#ButtonComponent'));
+    ButtonComponent.element.querySelector('button').addEventListener('click', () => {
+        ButtonComponent.commit('counter', ButtonComponent.getState().counter + 1);
+    });
+    InputComponent.element.querySelector('input').addEventListener('keyup', (event) => {        
+        InputComponent.commit('text', event.target.value);
+    });
+</script>
+</body>
+
+</html>
